@@ -1,0 +1,85 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.python-version
+.coverage
+htmlcov/
+.pytest_cache/
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# AWS CDK
+cdk.out/
+.cdk.staging/
+cdk-integ.out/
+cdk.context.json
+.cdk-params
+
+# Data files
+*.csv
+*.txt
+*.pkl
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+.vs/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Node.js for CDK
+node_modules/
+package-lock.json
+yarn.lock
+
+# Local development
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Neptune export files
+neptune_export/
+AmazonQ.md
+blog-post-v1.md
+blog-post-v2.md
