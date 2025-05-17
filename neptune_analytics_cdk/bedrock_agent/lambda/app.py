@@ -12,7 +12,7 @@ logger.setLevel(logging.INFO)
 
 neptune_endpoint = os.environ.get('NEPTUNE_ANALYTICS_ENDPOINT')
 region = os.environ.get('AWS_REGION', 'us-east-1')
-neptune_client = boto3.client('neptune-graph', region_name=self.region)
+neptune_client = boto3.client('neptune-graph', region_name=region)
     
 def execute_query(query, params=None):
     """Execute an openCypher query against Neptune Analytics"""
@@ -94,7 +94,7 @@ def get_platform_comparison():
     result = execute_query(query)
     return result
 
-def get_anomalies():
+def get_anomalies(parameters):
     """Find anomalies in the data"""
     anomaly_type = parameters.get("anomaly_type", "sentiment_rating_mismatch")
     
@@ -149,7 +149,8 @@ def handler(event, context):
         elif api_path == '/getPlatformComparison':
             body = get_platform_comparison()
         elif api_path == '/getAnomalies':
-            body = get_anomalies()
+            parameters = event.get('parameters', [])
+            body = get_anomalies(parameters)
         elif api_path == '/runCustomQuery':
             parameters = event.get('parameters', [])
             body = run_custom_query(parameters)
