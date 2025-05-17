@@ -14,7 +14,7 @@ neptune_endpoint = os.environ.get('NEPTUNE_ANALYTICS_ENDPOINT')
 region = os.environ.get('AWS_REGION', 'us-east-1')
 neptune_client = boto3.client('neptune-graph', region_name=self.region)
     
-def execute_query(self, query, params=None):
+def execute_query(query, params=None):
     """Execute an openCypher query against Neptune Analytics"""
     try:
         if params:
