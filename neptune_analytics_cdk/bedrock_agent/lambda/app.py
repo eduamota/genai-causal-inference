@@ -131,7 +131,7 @@ def run_custom_query(parameters):
     result = execute_query(query)
     return result
 
-def handler(event, context):
+def lambda_handler(event, context):
     try:
         
         action = event['actionGroup']
