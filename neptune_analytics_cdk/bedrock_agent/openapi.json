@@ -1,0 +1,229 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Neptune Analytics Support Agent API",
+    "version": "1.0.0",
+    "description": "API for a technical specialist agent that helps human agents improve their job performance by analyzing Neptune Analytics data"
+  },
+  "paths": {
+    "/getRatingStatistics": {
+      "post": {
+        "operationId": "getRatingStatistics",
+        "description": "Get statistics about ratings",
+        "summary": "Get statistics about ratings",
+        "responses": {
+          "200": {
+            "description": "Statistics about ratings",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatisticsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getResolutionImpact": {
+      "post": {
+        "operationId": "getResolutionImpact",
+        "summary": "Get the impact of resolution on ratings",
+        "description": "Get the impact of resolution on ratings",
+        "responses": {
+          "200": {
+            "description": "Impact of resolution on ratings",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImpactResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getUnderstandingImpact": {
+      "post": {
+        "operationId": "getUnderstandingImpact",
+        "summary": "Get the impact of understanding on ratings",
+        "description": "Get the impact of understanding on ratings",
+        "responses": {
+          "200": {
+            "description": "Impact of understanding on ratings",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImpactResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getCombinedFactors": {
+      "post": {
+        "operationId": "getCombinedFactors",
+        "summary": "Get the combined effect of resolution and understanding",
+        "description": "Get the combined effect of resolution and understanding",
+        "responses": {
+          "200": {
+            "description": "Combined effect of resolution and understanding",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CombinedResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getPlatformComparison": {
+      "post": {
+        "operationId": "getPlatformComparison",
+        "summary": "Compare AWS vs non-AWS platforms",
+        "description": "Compare AWS vs non-AWS platforms",
+        "responses": {
+          "200": {
+            "description": "Comparison of AWS vs non-AWS platforms",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlatformResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getAnomalies": {
+      "post": {
+        "operationId": "getAnomalies",
+        "summary": "Find anomalies in the data",
+        "description": "Find anomalies in the data",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "anomaly_type": {
+                    "type": "string",
+                    "enum": ["sentiment_rating_mismatch", "extreme_effects"],
+                    "default": "sentiment_rating_mismatch"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Anomalies in the data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnomalyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/runCustomQuery": {
+      "post": {
+        "operationId": "runCustomQuery",
+        "summary": "Run a custom openCypher query",
+        "description": "Run a custom openCypher query",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "query": {
+                    "type": "string",
+                    "description": "The openCypher query to run"
+                  }
+                },
+                "required": ["query"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Result of the custom query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QueryResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "StatisticsResponse": {
+        "type": "object",
+        "properties": {
+          "statistics": {
+            "type": "object"
+          }
+        }
+      },
+      "ImpactResponse": {
+        "type": "object",
+        "properties": {
+          "impact_data": {
+            "type": "object"
+          }
+        }
+      },
+      "CombinedResponse": {
+        "type": "object",
+        "properties": {
+          "combined_data": {
+            "type": "object"
+          }
+        }
+      },
+      "PlatformResponse": {
+        "type": "object",
+        "properties": {
+          "platform_data": {
+            "type": "object"
+          }
+        }
+      },
+      "AnomalyResponse": {
+        "type": "object",
+        "properties": {
+          "anomalies": {
+            "type": "object"
+          }
+        }
+      },
+      "QueryResponse": {
+        "type": "object",
+        "properties": {
+          "query_result": {
+            "type": "object"
+          }
+        }
+      }
+    }
+  }
+}
