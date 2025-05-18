@@ -30,7 +30,11 @@ class BedrockAgentConstruct(Construct):
         # Add permissions to query Neptune Analytics
         agent_lambda.add_to_role_policy(
             iam.PolicyStatement(
-                actions=["neptune-graph:ExecuteQuery"],
+                actions=["neptune-graph:ExecuteQuery",
+                "neptune-graph:DeleteDataViaQuery", 
+                "neptune-graph:ReadDataViaQuery", 
+                "neptune-graph:DescribeGraph",
+                "neptune-graph:WriteDataViaQuery"],
                 resources=[f"arn:aws:neptune-graph:{Stack.of(self).region}:{Stack.of(self).account}:graph/{neptune_analytics_endpoint}"]
             )
         )
